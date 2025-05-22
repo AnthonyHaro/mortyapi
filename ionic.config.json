@@ -1,0 +1,7 @@
+{
+  "name": "mortyapi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
