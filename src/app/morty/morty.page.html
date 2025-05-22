@@ -1,0 +1,60 @@
+<ion-content class="ion-padding" *ngIf="details">
+  <div class="container">
+    <img
+      [src]="details.imageUrl"
+      alt="Imagen de {{ details.name }}"
+      class="character-image"
+    />
+
+    <h2 class="character-name">
+      {{ details.name | titlecase }}
+    </h2>
+
+    <div class="character-info">
+      <p><strong>Estado:</strong> {{ details.status }}</p>
+      <p><strong>Tipo:</strong> {{ details.type }}</p>
+      <p><strong>Especie:</strong> {{ details.species }}</p>
+      <p><strong>Género:</strong> {{ details.gender }}</p>
+    </div>
+
+    <div class="comment-section">
+      <label class="comment-label">Tu comentario:</label>
+      <ion-textarea
+        [(ngModel)]="comment"
+        placeholder="Escribe tu comentario aquí..."
+        autoGrow="true"
+      ></ion-textarea>
+
+      <ion-button
+        expand="block"
+        color="primary"
+        (click)="saveComment()"
+        [disabled]="!comment.trim()"
+      >
+        Guardar Comentario
+      </ion-button>
+    </div>
+
+    <ion-card *ngIf="savedComment" class="comment-card">
+      <ion-card-header>
+        <ion-card-title>Comentario: </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{ savedComment }}
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button
+      expand="block"
+      color="success"
+      class="save-button"
+      (click)="saveCharacter()"
+    >
+      Guardar Personaje en Firebase
+    </ion-button>
+
+    <div *ngIf="savedSuccessfully" class="success-message">
+      ✅ Personaje guardado con éxito.
+    </div>
+  </div>
+</ion-content>
